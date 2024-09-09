@@ -16,6 +16,3 @@ async def names() -> Dict[str, List[str]]:
     return names
 
 app = Litestar(route_handlers=[hello, names])
-
-if __name__ == "__main__":
-    app.run()
