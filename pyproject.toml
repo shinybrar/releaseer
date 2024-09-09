@@ -1,0 +1,17 @@
+[project]
+name = "releaseer"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = [
+    "litestar[standard]>=2.11.0",
+    "pydantic>=2.9.0",
+    "pyyaml>=6.0.2",
+]
+
+[project.optional-dependencies]
+standard = []
+
+[tool.uv]
+dev-dependencies = []
