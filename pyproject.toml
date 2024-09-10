@@ -10,8 +10,9 @@ dependencies = [
     "pyyaml>=6.0.2",
 ]
 
-[project.optional-dependencies]
-standard = []
-
 [tool.uv]
-dev-dependencies = []
+dev-dependencies = [
+    "commitizen>=3.29.0",
+    "pytest>=8.3.2",
+    "ruff>=0.6.4",
+]

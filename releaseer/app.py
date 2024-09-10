@@ -3,7 +3,6 @@ from typing import Dict, List
 from litestar import Litestar, get
 from yaml import load, Loader
 
-# 
 
 @get("/")
 async def hello() -> Dict[str, str]:
@@ -15,4 +14,8 @@ async def names() -> Dict[str, List[str]]:
         names = load(f, Loader=Loader)
     return names
 
-app = Litestar(route_handlers=[hello, names])
+@get("/healthy")
+async def healthy() -> bool:
+    return True
+
+app = Litestar(route_handlers=[hello, names, healthy])
