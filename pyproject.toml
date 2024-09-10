@@ -3,16 +3,36 @@ name = "releaseer"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
-requires-python = ">=3.8"
+requires-python = ">=3.9"
 dependencies = [
     "litestar[standard]>=2.11.0",
     "pydantic>=2.9.0",
-    "pyyaml>=6.0.2",
 ]
 
 [tool.uv]
 dev-dependencies = [
     "commitizen>=3.29.0",
+    "pytest-asyncio>=0.24.0",
     "pytest>=8.3.2",
     "ruff>=0.6.4",
 ]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+
+[tool.ruff]
+# Assume Python 3.9 syntax
+target-version = "py39"
+#Set the maximum line length
+line-length = 88
+
+[tool.ruff.lint]
+# Enable specific rules for docstring checking and line length
+select = [
+    "D",  # Docstring conventions
+    "E501",  # Line length
+]
+
+[tool.ruff.lint.pydocstyle]
+# Use Google docstring convention
+convention = "google"
