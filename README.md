@@ -4,7 +4,7 @@ This project aims to provide a walkthrough for best practices in release automat
 
 ## Introduction
 
-We use a set of tools and conventions to automate the release process. These tools and conventions are chosen to make the release process more efficient and less error-prone and work well with modern software development practices, such as Continuous Integration and Continuous Deployment (CI/CD). They build on top of each other to provide a seamless experience for developers, maintainers, and users. 
+We use a set of tools and conventions to automate the release process. These tools and conventions are chosen to make the release process more efficient and less error-prone and work well with modern software development practices, such as Continuous Integration and Continuous Deployment (CI/CD). They build on top of each other to provide a seamless experience for developers, maintainers, and users.
 
 **At its core, this release process uses commit messages to determine the impact of a change in the codebase. It then uses this information to drive the release process, such as generating changelogs, creating release branches, and tagging releases and creating pull requests for maintainers to review.**
 
@@ -87,24 +87,73 @@ gitGraph
 
 `releaseer` is a python project, using next-gen tooling to manage a python project. These tools include:
 
-- `uv`: An extremely fast Python package and project manager, written in Rust.
-- `ruff`: An extremely fast Python linter and code formatter, written in Rust.
-- `litestar`: A Python web framework for building modern APIs and web applications.
-- `pydantic`: A data validation and settings management using Python type annotations.
+- [`uv`](https://docs.astral.sh/uv/): An extremely fast Python package and project manager, written in Rust.
+- [`ruff`](https://docs.astral.sh/ruff/): An extremely fast Python linter and code formatter, written in Rust.
+- [`litestar`](https://litestar.dev): A Python web framework for building modern APIs and web applications.
+- [`pydantic`](https://docs.pydantic.dev/latest/): A data validation and settings management using Python type annotations.
 
 ### Installation
 
-```yaml annotate
----
-layout: inline
----
+1. Forking the Repository
 
-# Installation on MacOS and Linux
-curl -LsSf https://astral.sh/uv/install.sh | sh
+    You can fork this repository using either the GitHub webpage or the GitHub CLI. Follow the steps below for your preferred method.
 
-# Alternatively, you can also use `brew` to install `uv` on MacOS:
-brew install uv
+    - Using the GitHub webpage:
+        - Navigate to the [releaseer repository on GitHub](https://github.com/shinybrar/releaseer/fork)
+        - Click the "Fork" button in the top right corner of the page.
+    - Using the [GitHub CLI](https://cli.github.com):
+        - Run the following command in your terminal:
 
-# Installation on Windows
-curl -LsSf https://astral.sh/uv/install.sh | sh
-```
+        ```bash
+        gh repo fork shinybrar/releaseer
+        ```
+
+2. Cloning the Repository
+
+    After forking the repository, you can clone it to your local machine using the following command:
+
+    ```bash
+    git clone https://github.com/YOUR_USERNAME/releaseer.git
+    ```
+
+3. Setting Up the Project
+
+    The `releaseer` project uses [`uv`](https://docs.astral.sh/uv/) for package, project and tool management. You can install `uv` using the following command:
+
+    ```bash
+    # Installation on MacOS and Linux
+    curl -LsSf https://astral.sh/uv/install.sh | sh
+
+    # Alternatively, you can also use `brew` to install `uv` on MacOS:
+    brew install uv
+
+    # Installation on Windows
+    curl -LsSf https://astral.sh/uv/install.sh | sh
+    ```
+
+    After installing `uv`, you can set up the project using the following command:
+
+    ```bash
+    uv sync
+    ```
+
+    This command will not only install all the dependencies in a virtual environment located at `.venv` required for the project,
+    but also install all the developer tools required for the development workflow. These include,
+    - `python@3.12` for running the project and the developer tools. (Only if `uv` cannot find a compatible version of python on your system path)
+    - `pre-commit` for installing hooks into the git command line interface.
+    - `commitizen` for generating conventional commits.
+
+    *Alternatively, you can also install all the dependencies manually.*
+
+    ```bash
+    pip install pre-commit commitizen
+    ```
+
+4. Setting Up Pre-Commit
+
+    Our release process uses `pre-commit` to enforce commit message standards, and in this case also the code formatting standards. You can install `pre-commit` using the following command:
+
+    ```bash
+    # This command will install the pre-commit hooks into the git command line interface
+    uv run pre-commit install --hook-type commit-msg
+    ```
