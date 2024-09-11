@@ -1,3 +1,6 @@
+---
+layout: article
+---
 # Releaseer
 
 This project aims to provide a walkthrough for best practices in release automation.
