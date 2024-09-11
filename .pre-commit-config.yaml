@@ -44,5 +44,15 @@ repos:
   - repo: https://github.com/astral-sh/uv-pre-commit
     rev: 0.4.9
     hooks:
-        # Update the uv lockfile
+        # Update the uv lockfile if pyproject.toml has changed
         - id: uv-lock
+  # Pre-Commit Hooks for Ruff Linter and Formatter
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    # Ruff version.
+    rev: v0.6.4
+    hooks:
+      # Run the linter.
+      - id: ruff
+        args: [ --fix ]
+      # Run the formatter.
+      - id: ruff-format
