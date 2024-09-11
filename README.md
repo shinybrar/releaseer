@@ -154,6 +154,11 @@ gitGraph
     Our release process uses `pre-commit` to enforce commit message standards, and in this case also the code formatting standards. You can install `pre-commit` using the following command:
 
     ```bash
-    # This command will install the pre-commit hooks into the git command line interface
     uv run pre-commit install --hook-type commit-msg
     ```
+
+    This command will install the pre-commit hooks into the git command line interface. These hooks will run every time you make a commit and will check if your commit message follows the Conventional Commits specification.
+
+    The usecase for `pre-commit` extends beyond just commit message validation. You can use it to enforce coding standards and conventions, such as linting, formatting, and testing. Test for various common mistakes, such as trailing whitespace, debug statements, and more. See the pre-commit configuration file below for more details.
+
+    ![Pre-commit Configuration](https://github.com/shinybrar/releaseer/blob/60484e49c39f62a586282f5cebb8d9ce97cd218b/.pre-commit-config.yaml#L3-L58)
