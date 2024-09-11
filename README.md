@@ -1,6 +1,6 @@
-# Software Release Walkthrough
+# Releaseer
 
-Releaseer is a repository which provides **a walkthrough for releasing software.**
+This project aims to provide a walkthrough for best practices in release automation.
 
 ## Introduction
 
@@ -81,49 +81,26 @@ gitGraph
     commit id: "Run CD Process" type: HIGHLIGHT
 ```
 
-## Releaseer
+## Walkthrough
 
-`releaseer` is a python project, using next-gen tooling, e.g.
+### Overview
+
+`releaseer` is a python project, using next-gen tooling to manage a python project. These tools include:
 
 - `uv`: An extremely fast Python package and project manager, written in Rust.
 - `ruff`: An extremely fast Python linter and code formatter, written in Rust.
+- `litestar`: A Python web framework for building modern APIs and web applications.
+- `pydantic`: A data validation and settings management using Python type annotations.
 
-## Installation: `uv`
+### Installation
 
-### MacOS
-
-```bash
+```bash annotate
+# Installation on MacOS and Linux
 curl -LsSf https://astral.sh/uv/install.sh | sh
-```
 
-Alternatively, you can also use `brew` to install `uv` on MacOS:
-
-```bash
+# Alternatively, you can also use `brew` to install `uv` on MacOS:
 brew install uv
-```
 
-### Linux
-
-```bash
+# Installation on Windows
 curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
-
-### Windows
-
-```bash
-# Windows
-powershell -c "irm https://astral.sh/uv/install.ps1 | more"
-```
-
-## Installation: `releaseer`
-
-```bash
-uv sync
-```
-
-## Usage
-
-```bash
-uv run litestar --app releaseer.app:app run
-```
-
