@@ -1,6 +1,3 @@
----
-layout: article
----
 # Releaseer
 
 This project aims to provide a walkthrough for best practices in release automation.
@@ -97,7 +94,11 @@ gitGraph
 
 ### Installation
 
-```bash annotate
+```yaml annotate
+---
+layout: inline
+---
+
 # Installation on MacOS and Linux
 curl -LsSf https://astral.sh/uv/install.sh | sh
 
