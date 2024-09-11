@@ -68,8 +68,8 @@ async def healthy() -> bool:
 
     Returns:
         bool: True if the application is healthy.
-            We are always healthy. :)
-    """    
+            We are always healthy. :D
+    """      
     return True
 
 # Create the backend application
