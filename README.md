@@ -143,10 +143,10 @@ gitGraph
     - `pre-commit` for installing hooks into the git command line interface.
     - `commitizen` for generating conventional commits.
 
-    *Alternatively, you can also install all the dependencies manually.*
+    *Alternatively, you can also install all the dependencies manually in your preferred way, e.g.*
 
     ```bash
-    pip install pre-commit commitizen
+    pip3 install commitizen pre-commit
     ```
 
 4. Setting Up Pre-Commit
@@ -165,6 +165,16 @@ gitGraph
 
     You can now make changes to the codebase.
 
+    You can also run pre-commit manually, to check if your changes meet the project's standards:
+
+    ```bash
+    uv run pre-commit run --all-files
+    # or
+    uv run pre-commit run -a
+    ```
+
+    This command will run all the pre-commit hooks on all the files in the project and let you know if there are any issues that need to be fixed.
+
 6. Committing Changes
 
     When you are ready to commit your changes, you can use `commitizen` to generate conventional commits. You can run the following command:
@@ -180,3 +190,26 @@ gitGraph
     *Note: You can also use `cz c` directly if you have `commitizen` installed globally.*
 
     This command will open a set of prompts that will guide you through generating a commit message that follows the Conventional Commits specification.
+
+7. Pushing Changes
+
+    Nothing special here, just push your changes to your fork:
+
+    ```bash
+    git push origin main
+    ```
+
+8. Opening a Pull Request
+
+    After pushing your changes, you can open a pull request to the main repository. You can do this using the GitHub webpage or the GitHub CLI.
+
+    - Using the GitHub CLI:
+        - Run the following command in your terminal:
+
+        ```bash
+        gh pr create --base main --head YOUR_USERNAME:main
+        ```
+
+    - Using the GitHub webpage:
+        - Navigate to the [releaseer repository on GitHub]() and click the "New pull request" button.
+        - Select the main repository as the base and your fork as the head.

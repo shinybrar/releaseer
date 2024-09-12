@@ -1,0 +1,25 @@
+name: Continuous Deployment
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+  pull-requests: write
+  packages: write
+  attestations: write
+  id-token: write
+
+jobs:
+  deployment:
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: Release Please Action
+        id: release-please
+        uses: googleapis/release-please-action@v4.1.1
+        with:
+          release-type: python
+          manifest-file: .release-please-manifest.json
