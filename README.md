@@ -14,19 +14,19 @@ We use a set of tools and conventions to automate the release process. These too
 
 The conventions and specifications used in this release process are agnostic to the programming language, framework, or platform. They are based on the current best practices in the industry and are designed to be flexible and extensible. They can be adapted to fit the needs of any specific project or development team.
 
-- [Conventianal Commits](https://www.conventionalcommits.org/en/v1.0.0/), which is a specification for adding human and machine readable meaning to commit messages.
+- [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/), which is a specification for adding human and machine readable meaning to commit messages.
 - [SemVer](https://semver.org), which is a specification for versioning software.
 - [Changelog](https://keepachangelog.com/en/1.0.0/), which is a specification for maintaining the history of a project.
 - [Continous Integration](https://en.wikipedia.org/wiki/Continuous_integration), which is a software development practice where developers integrate code into a shared repository frequently, preferably several times a day. Each integration can then be verified by an automated build and automated tests.
 - Release Automation Process, which is the process of automating the release process. This can include automating the generation of changelog, the creation of release branches, the tagging of releases, and the publishing of releases.
-- [Continous Deployment](https://en.wikipedia.org/wiki/Continuous_deployment), which is a software development practice where code releases automatically built, tested, and deployed to environments.
+- [Continuous Deployment](https://en.wikipedia.org/wiki/Continuous_deployment), which is a software development practice where code releases are automatically built, tested, and deployed to environments.
 
 ## Tools
 
 To automate the release process, we use the following tools and practices which focus on developer experience, maintainability, and reliability. They are designed to be simple, efficient, and scalable with the goal of freeing developers from the burden of manual tasks and allowing them to focus on writing code.
 
-- [Commitizen](https://commitizen-tools.github.io/commitizen/), which is a command-line tool for generating conventional commits. It provides a set of prompts for generating commit messages that follow the [Conventianal Commits](https://www.conventionalcommits.org/en/v1.0.0/) specification.
-- [Github Actions](https://github.com/features/actions), which is a Continuous Integration and Deployment platform provided by Github. It allows you to automate the release process by running scripts in response to events, such as pushing code to a repository or openning a pull request. You can use other CI/CD tools, such as Jenkins, Gitlab CI, and CircleCI as well.
+- [Commitizen](https://commitizen-tools.github.io/commitizen/), which is a command-line tool for generating conventional commits. It provides a set of prompts for generating commit messages that follow the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) specification.
+- [Github Actions](https://github.com/features/actions), which is a Continuous Integration and Deployment platform provided by Github. It allows you to automate the release process by running scripts in response to events, such as pushing code to a repository or opening a pull request. You can use other CI/CD tools, such as Jenkins, Gitlab CI, and CircleCI as well.
 - [Code Coverage](https://en.wikipedia.org/wiki/Code_coverage), which is a measure of how much of your codebase is covered by tests. It can be used to determine the quality of your tests and identify areas of your codebase that are not tested. You can use tools like `codecov`, `coveralls`, and `sonarqube` to measure code coverage. While code coverage is not a perfect measure of quality, it can still instill confidence in your codebase, especially in the paradigm of continuous integration and deployment.
 - [Release Please](https://github.com/googleapis/release-please), which is a tool for automating the release process published by Google. It generates release PRs, changelog, and tags based on the Conventional Commits specification. It can be used as a standalone process or in conjunction with Github Actions to automate the release process.
 - [Pre-commit](https://pre-commit.com), which is a framework for managing and maintaining multi-language hooks for git repositories. Hooks are scripts that run before or after certain git commands and can be used for a variety of tasks, such as linting, formatting, and testing. It can be used to enforce coding standards and conventions, such as commit message format. You can configure pre-commit to run `pytest` for a python project, `eslint` for a javascript project etc.
@@ -35,14 +35,14 @@ To automate the release process, we use the following tools and practices which 
 
 The workflow from making changes to the codebase to deploying the code to the production environment is as follows:
 
-1. **Developer** either creates a feature branch or forks the main repository to make changes to the codebase.
+1. **Developer** to make changes to the codebase, the developer forks the main repository, and then creates a feature branch in that fork.
 2. **Developer** makes changes to the codebase and commits them using Commitizen to generate conventional commits.
 3. **Developer** runs `pre-commit` locally to lint, format and optionally test the codebase.
 4. **Developer** pushes the changes to their fork and opens a pull request to the main repository.
 5. **Github Actions** runs the Continuous Integration process, which includes running tests, linting, and formatting the codebase to ensure it meets the project's standards. As projects mature, you can add more checks, such as security scans, performance tests, etc. to the CI process.
 6. **Maintainer** reviews the pull request and merges it into the main branch of the source repository.
-7. **Github Actions** runs detects the push to the main branch and runs the **replease-please** automation workflow. If the changes are determined to amount to a new release, i.e. a new feature, a fix, or a breaking change, a new release PR is created.
-8. **Maintainer** reviews the release PR and merges it into the main branch of the source repository accumalating one or more downstream changes.
+7. **Github Actions** detects the push to the main branch and runs the **release-please** automation workflow. If the changes are determined to amount to a new release, i.e. a new feature, a fix, or a breaking change, a new release PR is created.
+8. **Maintainer** reviews the release PR and merges it into the main branch of the source repository accumulating one or more downstream changes.
 9. **Github Actions** runs the Continuous Deployment process, which includes building, testing, and deploying the codebase to the production environment. This includes generating the changelog, creating the release branch, tagging the release, and publishing the release as well as deploying the codebase to the production environment, e.g. kubernetes cluster, serverless environment, etc.
 
 The following diagram illustrates the workflow:
@@ -92,7 +92,7 @@ gitGraph
 - [`uv`](https://docs.astral.sh/uv/): An extremely fast Python package and project manager, written in Rust.
 - [`ruff`](https://docs.astral.sh/ruff/): An extremely fast Python linter and code formatter, written in Rust.
 - [`litestar`](https://litestar.dev): A Python web framework for building modern APIs and web applications.
-- [`pydantic`](https://docs.pydantic.dev/latest/): A data validation and settings management using Python type annotations.
+- [`pydantic`](https://docs.pydantic.dev/latest/): A data validation and settings management library using Python type annotations.
 
 ### Installation
 
@@ -115,7 +115,7 @@ gitGraph
     After forking the repository, you can clone it to your local machine using the following command:
 
     ```bash
-    git clone https://github.com/YOUR_USERNAME/releaseer.git
+    git clone https://github.com/YOUR_GITHUB_USERNAME/releaseer.git
     ```
 
 3. Setting Up the Python Tooling
@@ -170,9 +170,9 @@ gitGraph
     uv run pre-commit install --hook-type commit-msg
     ```
 
-    This command will install the pre-commit hooks into the git command line interface. These hooks are simply scripts defined in our pre-commit config will run every time you make a commit and will check for any issues in your codebase, e.g. check if your commit message follows the Conventional Commits specification.
+    This command will install the pre-commit hooks into the git command line interface. These hooks are simply scripts defined in our pre-commit config that will run every time you make a commit and will check for any issues in your codebase, e.g. check if your commit message follows the Conventional Commits specification.
 
-    The usecase for `pre-commit` extends beyond just commit message validation. You can use it to enforce coding standards and conventions, such as linting, formatting, and testing. Test for various common mistakes, such as trailing whitespace, debug statements, and more. Here is an example of a pre-commit configuration file:
+    The use case for `pre-commit` extends beyond just commit message validation. You can use it to enforce coding standards and conventions, such as linting, formatting, and testing. Test for various common mistakes, such as trailing whitespace, debug statements, and more. Here is an example of a pre-commit configuration file:
 
     ```yaml
     repos:
@@ -214,7 +214,7 @@ gitGraph
     ```markdown
     # Contributers
 
-    - [Your Name](https://github.com/YOUR_USERNAME)
+    - [Your Name](https://github.com/YOUR_GITHUB_USERNAME)
     ```
 
     - After making the changes, run `git add` to stage the changes:
@@ -228,8 +228,6 @@ gitGraph
     When you are ready to commit your changes, you can use `commitizen` to generate conventional commits. You can run the following command:
 
     ```bash
-    uv run commitizen commit
-    # or the shorthand
     uv run cz commit
     # or the shorter shorthand
     uv run cz c
@@ -240,11 +238,11 @@ gitGraph
     *Note: You can also use `cz c` directly if you have `commitizen` installed globally.*
 
     After generating the commit message, commitizen underneath the hood just runs `git commit -m "feat: add your name to the list of contributors"`. Running
-    `git commit` in turn trigger `pre-commit` hooks to run on the commit message and the commited codebase. If there are any issues, `pre-commit` will let you
+    `git commit` in turn will trigger `pre-commit` hooks to run on the commit message and the commited codebase. If there are any issues, `pre-commit` will let you
     know and you can fix them before proceeding.
 
     It is very likely that after going through the `commitizen` prompts, `pre-commit` checks will fail. However, in order to save the precious dev time, `commitizen`
-    caches the prevsious commit message and you can bypass the prompt process by running,
+    caches the previous commit message and you can bypass the prompt process by running,
 
     ```bash
     uv run cz c --retry
@@ -291,7 +289,7 @@ gitGraph
     Nothing special here, just push your changes to your fork:
 
     ```bash
-    git push origin main
+    git push origin branch_name
     ```
 
 9. Opening a Pull Request
@@ -302,7 +300,7 @@ gitGraph
         - Run the following command in your terminal:
 
         ```bash
-        gh pr create --base main --head YOUR_USERNAME:main
+        gh pr create --base main --head YOUR_USERNAME:branch_name
         ```
 
     - Using the GitHub webpage:
