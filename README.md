@@ -207,7 +207,49 @@ gitGraph
 
     You can now make changes to the codebase.
 
-    You can also run pre-commit manually, to check if your changes meet the project's standards:
+    - For example, you can add your name to the list of contributors in the `CONTRIBUTERS.md` file:
+
+    ```markdown
+    # Contributers
+
+    - [Your Name](https://github.com/YOUR_USERNAME)
+    ```
+
+    - After making the changes, run `git add` to stage the changes:
+
+    ```bash
+    git add CONTRIBUTERS.md
+    ```
+
+7. Committing Changes
+
+    When you are ready to commit your changes, you can use `commitizen` to generate conventional commits. You can run the following command:
+
+    ```bash
+    uv run commitizen commit
+    # or the shorthand
+    uv run cz commit
+    # or the shorter shorthand
+    uv run cz c
+    ```
+
+    **Choose `feat` and proceed with your commit message to ensure it triggers the release automation process.**
+
+    *Note: You can also use `cz c` directly if you have `commitizen` installed globally.*
+
+    After generating the commit message, commitizen underneath the hood just runs `git commit -m "feat: add your name to the list of contributors"`. Running
+    `git commit` in turn trigger `pre-commit` hooks to run on the commit message and the commited codebase. If there are any issues, `pre-commit` will let you
+    know and you can fix them before proceeding.
+
+    It is very likely that after going through the `commitizen` prompts, `pre-commit` checks will fail. However, in order to save the precious developer time, `commitizen` caches the prevsious commit message and you can bypass the prompt process by running,
+
+    ```bash
+    uv run cz c --retry
+    # or
+    cz c --retry # if you have commitizen installed globally
+    ```
+
+    You can also run pre-commit manually, to check if your changes meet the project's standards.
 
     ```bash
     uv run pre-commit run --all-files
@@ -215,23 +257,31 @@ gitGraph
     uv run pre-commit run -a
     ```
 
-    This command will run all the pre-commit hooks on all the files in the project and let you know if there are any issues that need to be fixed.
-
-7. Committing Changes
-
-    When you are ready to commit your changes, you can use `commitizen` to generate conventional commits. You can run the following command:
-
     ```bash
-    uv run cz c
-    # or
-    uv run cz commit
-    # or
-    uv run commitizen commit
+    % uv run pre-commit run --all-files
+    check for added large files..............................................Passed
+    check for case conflicts.................................................Passed
+    check that executables have shebangs.................(no files to check)Skipped
+    check json...............................................................Passed
+    check for merge conflicts................................................Passed
+    check for broken symlinks............................(no files to check)Skipped
+    check toml...............................................................Passed
+    check yaml...............................................................Passed
+    check xml............................................(no files to check)Skipped
+    debug statements (python)................................................Passed
+    fix end of files.........................................................Passed
+    trim trailing whitespace.................................................Failed
+    - hook id: trailing-whitespace
+    - exit code: 1
+    - files were modified by this hook
+
+    Fixing README.md
+
+    detect private key.......................................................Passed
+    uv-lock..................................................................Passed
+    ruff.....................................................................Passed
+    ruff-format..............................................................Passed
     ```
-
-    *Note: You can also use `cz c` directly if you have `commitizen` installed globally.*
-
-    This command will open a set of prompts that will guide you through generating a commit message that follows the Conventional Commits specification.
 
 8. Pushing Changes
 
@@ -253,12 +303,14 @@ gitGraph
         ```
 
     - Using the GitHub webpage:
-        - Navigate to the [releaseer repository on GitHub]() and click the "New pull request" button.
+        - Navigate to the [releaseer repository on GitHub](https://github.com/shinybrar/releaseer) and click the "New pull request" button.
         - Select the main repository as the base and your fork as the head.
 
 10. Reviewing and Merging the Pull Request
 
     After opening the pull request, a maintainer will review your changes and merge them into the main branch of the source repository. This will trigger the Continuous Integration process, which includes running tests, linting, and formatting the codebase to ensure it meets the project's standards and also providing coverage reports for codebase. As projects mature, you can add more checks, such as security scans, performance tests, etc. to the CI process and even automate the merge process when all checks pass.
+
+    *The Continous Integration process using Github Actions can be found at [`.github/workflows/continous-integration.yaml`](https://github.com/shinybrar/releaseer/blob/main/.github/workflows/continous-integration.yaml), however the details and methodaology of the CI process is out of scope for this document.*
 
 11. Release Automation Process
 
@@ -266,11 +318,84 @@ gitGraph
 
     Note, that in case of changes related to docs, chores, refactor, style, test, or performance changes, the release automation process will not create a release PR.
 
+    In our implementation we use the [Google's Release Please tool](https://github.com/googleapis/release-please). Setting up this tool, requires minimal configuration,
+
+    - Create a `.release-please-manifest.json` file in the root of your repository. This file will contain the configuration for the release process. The list of fully supported release types, languages, and package managers can be found [here](https://github.com/googleapis/release-please?tab=readme-ov-file#strategy-language-types-supported)
+
+        ```json
+        {
+            ".": "0.1.0",
+            "packages": {
+            ".": {
+                "extra-files": [
+                "releaseer/__init__.py"
+                ],
+                "package-name": "releaseer",
+                "release-type": "python"
+            }
+            }
+        }
+        ```
+
+    - Create a `.github/workflows/continous-deployment.yaml` file in the root of your repository. This file will contain the configuration for the release automation and deployment process.
+
+        ```yaml
+        name: Continuous Deployment # Name of the workflow
+
+        on: # Defines when the workflow should be triggered
+        push:
+            branches:
+            - main # Trigger the workflow on push events to the main branch only
+
+        permissions:
+        contents: write
+        pull-requests: write
+        packages: write
+        attestations: write
+        id-token: write
+
+        jobs:
+        deployment:
+            runs-on: ubuntu-latest
+            steps:
+            -
+                name: Release Please Action
+                id: release-please
+                uses: googleapis/release-please-action@v4.1.1
+                with:
+                release-type: python
+                manifest-file: .release-please-manifest.json
+            -
+                name: Checkout Code
+                if: ${{ steps.release-please.outputs.release_created }}
+                uses: actions/checkout@v3
+                with:
+                    fetch-depth: 1
+            -
+                name: Install Dependencies
+                if: ${{ steps.release-please.outputs.release_created }}
+                run: |
+                    uv build
+                    uv publish
+                env:
+                    PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
+        ```
+
 12. Continuous Deployment Process
 
-    After the release PR is successfully merged and a new release tag is created on the git commit history, the Continuous Deployment process will be triggered. This process will include building, publishing and deploying the codebase to the production or development environments. e.g. pushing a python package to pypi, deploying a docker image to a kubernetes cluster, etc.
+    After the release PR is successfully merged and a new release tag is created on the git commit history, the Continuous Deployment process will be triggered. This process will include building, publishing and deploying the codebase to the production or development environments. As seen in the example above, the Continuous Deployment process can be automated using Github Actions. The deployments are however, only executed when a new release is created, represented by the `release_created` output of the `release-please` action.
 
-    Deploying to production environments can be a complex process and can include multiple steps, such as deploying to a staging environment, running integration tests, and deploying to production. You can use tools like `helm`, `terraform`, `ansible`, `kubernetes`, `serverless`, etc. to automate the deployment process. But only when deployed, the release process is considered complete.
+    ```yaml
+    name: Install Dependencies
+    if: ${{ steps.release-please.outputs.release_created }} # Only run if a new release is created
+    run: |
+        uv build
+        uv publish
+    env:
+        PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
+    ```
+
+    Deploying to production environments can be a complex process and can include multiple steps, such as deploying to a staging environment, running integration tests, and deploying to production. You can use tools like `helm`, `terraform`, `ansible`, `kubernetes`, `serverless`, etc. to automate the deployment process and is considered out of scope for this document.
 
 13. Celebrate
 
