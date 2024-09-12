@@ -73,12 +73,15 @@ jobs:
       run: uv sync --all-extras --dev
     -
       name: Run tests # Step to run tests
-      run: uv run pytest tests --cov --junitxml=junit.xml -o junit_family=legacy
+      run: uv run pytest tests --cov --cov-report=xml --junitxml=junit.xml -o junit_family=legacy
     -
       name: Upload coverage to Codecov
       uses: codecov/codecov-action@v4
       with:
+        fail_ci_if_error: true # Fail the CI if an error occurs during the upload
         token: ${{ secrets.CODECOV_TOKEN }}
+        flags: ${{ matrix.python-version }}
+        verbose: true # optional (default = false)
     -
       name: Upload test results to Codecov
       if: ${{ !cancelled() }}
