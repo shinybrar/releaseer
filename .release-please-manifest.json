@@ -1,12 +1,12 @@
 {
-    ".": "0.1.0",
-    "packages": {
-      ".": {
-        "extra-files": [
-          "releaseer/__init__.py"
-        ],
-        "package-name": "releaseer",
-        "release-type": "python"
-      }
+  ".": "0.1.0",
+  "packages": {
+    ".": {
+      "extra-files": [
+        "releaseer/__init__.py"
+      ],
+      "package-name": "releaseer",
+      "release-type": "python"
     }
   }
+}
