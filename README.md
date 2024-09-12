@@ -159,6 +159,24 @@ gitGraph
 
     This command will install the pre-commit hooks into the git command line interface. These hooks will run every time you make a commit and will check if your commit message follows the Conventional Commits specification.
 
-    The usecase for `pre-commit` extends beyond just commit message validation. You can use it to enforce coding standards and conventions, such as linting, formatting, and testing. Test for various common mistakes, such as trailing whitespace, debug statements, and more. See the pre-commit configuration file below for more details.
+    The usecase for `pre-commit` extends beyond just commit message validation. You can use it to enforce coding standards and conventions, such as linting, formatting, and testing. Test for various common mistakes, such as trailing whitespace, debug statements, and more. See the pre-commit configuration file of this project at [`.pre-commit-config.yaml`](https://github.com/shinybrar/releaseer/blob/60484e49c39f62a586282f5cebb8d9ce97cd218b/.pre-commit-config.yaml) for more details.
 
-    ![Pre-commit Configuration](https://github.com/shinybrar/releaseer/blob/60484e49c39f62a586282f5cebb8d9ce97cd218b/.pre-commit-config.yaml#L3-L58)
+5. Making Changes
+
+    You can now make changes to the codebase.
+
+6. Committing Changes
+
+    When you are ready to commit your changes, you can use `commitizen` to generate conventional commits. You can run the following command:
+
+    ```bash
+    uv run cz c
+    # or
+    uv run cz commit
+    # or
+    uv run commitizen commit
+    ```
+
+    *Note: You can also use `cz c` directly if you have `commitizen` installed globally.*
+
+    This command will open a set of prompts that will guide you through generating a commit message that follows the Conventional Commits specification.

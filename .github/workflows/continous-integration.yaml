@@ -1,0 +1,87 @@
+# Name of the GitHub Action workflow
+name: Continuous Integration
+
+# Defines when the workflow should be triggered
+on:
+  push:
+    # Trigger the workflow on push events to the main branch
+    branches:
+      - main
+   # Trigger the workflow on pull request events for any branch
+  pull_request:
+    branches:
+      - "**"
+    types:
+      # Trigger when a pull request is marked as ready for review
+      - ready_for_review
+      # Trigger when a pull request is synchronized (e.g., new commits are pushed to the branch)
+      - synchronize
+  # Trigger the workflow on schedule on a daily basis, at 00:00 UTC
+  schedule:
+    - cron: "0 0 * * *"
+
+jobs:
+  # Job to run pre-commit hooks
+  pre-commit:
+    strategy:
+      matrix:
+        # Define the operating system to use for the job
+        os: [ubuntu-latest]
+        # Define the Python versions to test against
+        python-version: ["3.11", "3.12"]
+     # Specify the OS to run the job on, based on the matrix
+    runs-on: ${{ matrix.os }}
+    steps:
+    -
+      # Step to check out the repository
+      name: Checking out repository
+      # Use the checkout action to clone the repository
+      uses: actions/checkout@v4
+    -
+      # Step to set up Python
+      name: Setting up python ${{ matrix.python-version }}
+      # Use the setup-python action to install the specified Python version
+      uses: actions/setup-python@v4
+      with:
+        # Specify the Python version to install
+        python-version: ${{ matrix.python-version }}
+    -
+      # Run pre-commit hooks using the pre-commit action
+      uses: pre-commit/action@v3.0.1
+
+  # Job to run tests
+  tests:
+    strategy:
+      matrix:
+        os: [ubuntu-latest] # Define the operating system to use for the job
+        python-version: ["3.11", "3.12"] # Define the Python versions to test against
+    runs-on: ${{ matrix.os }} # Specify the OS to run the job on, based on the matrix
+    # This job depends on the successful completion of the pre-commit job
+    needs: pre-commit
+    steps:
+    -
+      name: Checking out repository # Step to check out the repository
+      uses: actions/checkout@v4 # Use the checkout action to clone the repository
+    -
+      name: Setup uv # Step to set up uv
+      uses: astral-sh/setup-uv@v2
+    -
+      name: Set up Python ${{ matrix.python-version }} # Step to set up Python
+      run: uv python install ${{ matrix.python-version }}
+    -
+      name: Install the project dependencies # Step to install the project dependencies
+      run: uv sync --all-extras --dev
+    -
+      name: Run tests # Step to run tests
+      run: uv run pytest tests --cov --junitxml=junit.xml -o junit_family=legacy
+    -
+      name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v4
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+    -
+      name: Upload test results to Codecov
+      if: ${{ !cancelled() }}
+      uses: codecov/test-results-action@v1
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
