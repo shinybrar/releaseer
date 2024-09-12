@@ -1,3 +1,5 @@
+[![Continuous Integration](https://github.com/shinybrar/releaseer/actions/workflows/continous-integration.yaml/badge.svg)](https://github.com/shinybrar/releaseer/actions/workflows/continous-integration.yaml) [![Continuous Deployment](https://github.com/shinybrar/releaseer/actions/workflows/continous-deployment.yaml/badge.svg)](https://github.com/shinybrar/releaseer/actions/workflows/continous-deployment.yaml) [![codecov](https://codecov.io/gh/shinybrar/releaseer/graph/badge.svg?token=YW9P2997KV)](https://codecov.io/gh/shinybrar/releaseer)
+
 # Releaseer
 
 This project aims to provide a walkthrough for best practices in release automation.
@@ -241,7 +243,8 @@ gitGraph
     `git commit` in turn trigger `pre-commit` hooks to run on the commit message and the commited codebase. If there are any issues, `pre-commit` will let you
     know and you can fix them before proceeding.
 
-    It is very likely that after going through the `commitizen` prompts, `pre-commit` checks will fail. However, in order to save the precious developer time, `commitizen` caches the prevsious commit message and you can bypass the prompt process by running,
+    It is very likely that after going through the `commitizen` prompts, `pre-commit` checks will fail. However, in order to save the precious dev time, `commitizen`
+    caches the prevsious commit message and you can bypass the prompt process by running,
 
     ```bash
     uv run cz c --retry
@@ -400,3 +403,10 @@ gitGraph
 13. Celebrate
 
     Congratulations! You have successfully completed the release process. You can now celebrate your hard work and enjoy the fruits of your labor. I kid, on to the next feature!
+
+---
+<p align="center">
+  <a href="Some Love">
+    <img src="https://forthebadge.com/images/badges/built-with-love.svg">
+  </a>
+</p>
