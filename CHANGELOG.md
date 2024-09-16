@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.0](https://github.com/shinybrar/releaseer/compare/v0.1.0...v0.2.0) (2024-09-16)
+
+
+### Features
+
+* **docs:** added future work docs ([76fec10](https://github.com/shinybrar/releaseer/commit/76fec103375fa716d618ac686a7d2518431831ca))
+
 ## 0.1.0 (2024-09-12)
 
 
