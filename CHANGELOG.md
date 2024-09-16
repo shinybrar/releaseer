@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.2](https://github.com/shinybrar/releaseer/compare/v0.2.1...v0.2.2) (2024-09-16)
+
+
+### Bug Fixes
+
+* **pre-commit:** removing uv-lock check ([79dd12f](https://github.com/shinybrar/releaseer/commit/79dd12fd58268a1a456011637d3be7755a06192e))
+
 ## [0.2.1](https://github.com/shinybrar/releaseer/compare/v0.2.0...v0.2.1) (2024-09-16)
 
 
