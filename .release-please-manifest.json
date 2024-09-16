@@ -4,7 +4,7 @@
     ".": {
       "extra-files": [
         "releaseer/__init__.py",
-        "uv.lock"
+        "./uv.lock"
       ],
       "package-name": "releaseer",
       "release-type": "python"

@@ -978,7 +978,7 @@ wheels = [
 
 [[package]]
 name = "releaseer"
-version = "0.2.0"  # {x-release-please-version}
+version = "0.2.2"
 source = { virtual = "." }
 dependencies = [
     { name = "litestar", extra = ["standard"] },
