@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.2](https://github.com/shinybrar/releaseer/compare/v0.4.1...v0.4.2) (2024-09-17)
+
+
+### Bug Fixes
+
+* **deployments:** implemented a repo dispatch event ([b418146](https://github.com/shinybrar/releaseer/commit/b4181460ea2554f57551a63a68320b6e6421af39))
+
 ## [0.4.1](https://github.com/shinybrar/releaseer/compare/v0.4.0...v0.4.1) (2024-09-17)
 
 
