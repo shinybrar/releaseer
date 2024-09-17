@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.0](https://github.com/shinybrar/releaseer/compare/v0.2.4...v0.3.0) (2024-09-17)
+
+
+### Features
+
+* **release:** added pypi release trusted action, split deployment into continous release/deployment ([ae55ddd](https://github.com/shinybrar/releaseer/commit/ae55dddda8a6aa506c38e6104773f231da1ffbeb))
+
 ## [0.2.4](https://github.com/shinybrar/releaseer/compare/v0.2.3...v0.2.4) (2024-09-17)
 
 
