@@ -1,0 +1,25 @@
+name: Continuous Release # Name of the workflow
+
+on: # Defines when the workflow should be triggered
+  push:
+    branches:
+      - main # Trigger the workflow on push events to the main branch only
+
+permissions:
+  contents: write
+  pull-requests: write
+  packages: write
+  attestations: write
+  id-token: write
+
+jobs:
+  deployment:
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: Release Please Action
+        id: release-please
+        uses: googleapis/release-please-action@v4.1.1
+        with:
+          release-type: python
+          manifest-file: .release-please-manifest.json
