@@ -34,3 +34,22 @@ jobs:
         uses: peter-evans/repository-dispatch@v3
         with:
           event-type: deploy
+
+          # -
+          #   name: Dispatch PYPI Release Workflow
+          #   if: ${{ steps.release-please.outputs.release_created }}
+          #   uses: peter-evans/repository-dispatch@v3
+          #   with:
+          #     event-type: pypi-release
+          # -
+          #   name: Trigger Production Deployment
+          #   if: ${{ steps.release-please.outputs.release_created }}
+          #   uses: peter-evans/repository-dispatch@v3
+          #   with:
+          #     event-type: deploy-prod
+          # -
+          #   name: Trigger Development Deployment
+          #   if: not ${{ steps.release-please.outputs.release_created == false }}
+          #   uses: peter-evans/repository-dispatch@v3
+          #   with:
+          #     event-type: deploy-dev
