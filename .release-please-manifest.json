@@ -1,9 +1,10 @@
 {
-  ".": "0.1.0",
+  ".": "0.2.3",
   "packages": {
     ".": {
       "extra-files": [
-        "releaseer/__init__.py"
+        "releaseer/__init__.py",
+        "./uv.lock"
       ],
       "package-name": "releaseer",
       "release-type": "python"

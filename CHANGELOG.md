@@ -1,5 +1,33 @@
 # Changelog
 
+## [0.2.3](https://github.com/shinybrar/releaseer/compare/v0.2.2...v0.2.3) (2024-09-16)
+
+
+### Bug Fixes
+
+* **release-please:** attempt to fix uv.lock increment change by release automation bot ([03b2eec](https://github.com/shinybrar/releaseer/commit/03b2eec877ae9001519c4f3dc8ff767f7cdbe17a))
+
+## [0.2.2](https://github.com/shinybrar/releaseer/compare/v0.2.1...v0.2.2) (2024-09-16)
+
+
+### Bug Fixes
+
+* **pre-commit:** removing uv-lock check ([79dd12f](https://github.com/shinybrar/releaseer/commit/79dd12fd58268a1a456011637d3be7755a06192e))
+
+## [0.2.1](https://github.com/shinybrar/releaseer/compare/v0.2.0...v0.2.1) (2024-09-16)
+
+
+### Bug Fixes
+
+* **uv:** fixed release increment to uv.lock file by release-please ([5b0b3fe](https://github.com/shinybrar/releaseer/commit/5b0b3feca9ef580614c1f7d50c35f6198cd3badc))
+
+## [0.2.0](https://github.com/shinybrar/releaseer/compare/v0.1.0...v0.2.0) (2024-09-16)
+
+
+### Features
+
+* **docs:** added future work docs ([76fec10](https://github.com/shinybrar/releaseer/commit/76fec103375fa716d618ac686a7d2518431831ca))
+
 ## 0.1.0 (2024-09-12)
 
 
