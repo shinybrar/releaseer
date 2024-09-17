@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.4](https://github.com/shinybrar/releaseer/compare/v0.4.3...v0.4.4) (2024-09-17)
+
+
+### Bug Fixes
+
+* **pypi:** fix to attested deployment ([7c475db](https://github.com/shinybrar/releaseer/commit/7c475db8eb56a068372261e4c2986909dcbd925f))
+
 ## [0.4.3](https://github.com/shinybrar/releaseer/compare/v0.4.2...v0.4.3) (2024-09-17)
 
 
