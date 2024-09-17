@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.3](https://github.com/shinybrar/releaseer/compare/v0.4.2...v0.4.3) (2024-09-17)
+
+
+### Bug Fixes
+
+* **release-trigger:** fixed repo dispatch version ([1cc9cce](https://github.com/shinybrar/releaseer/commit/1cc9cce6b43ca16b3e8e6e277e9787b237bd89cc))
+
 ## [0.4.2](https://github.com/shinybrar/releaseer/compare/v0.4.1...v0.4.2) (2024-09-17)
 
 
