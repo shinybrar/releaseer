@@ -1,9 +1,8 @@
 name: Continous Deployment
 
 on:
-  release:
-    types:
-      - published
+  repository_dispatch:
+    types: [deploy]
 
 jobs:
   release-build:

@@ -13,7 +13,7 @@ permissions:
   id-token: write
 
 jobs:
-  deployment:
+  release-please: # Job to run the Release Please Action
     runs-on: ubuntu-latest
     steps:
       -
@@ -23,3 +23,14 @@ jobs:
         with:
           release-type: python
           manifest-file: .release-please-manifest.json
+      -
+        name: Release Created
+        if: ${{ steps.release-please.outputs.release_created }}
+        run: |
+            echo "Release Created: ${{ steps.release-please.outputs.tag_name }}"
+      -
+        name: Trigger Deployment Workflow
+        if: ${{ steps.release-please.outputs.release_created }}
+        uses: peter-evans/repository-dispatch@v1
+        with:
+          event-type: deploy
