@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.4.5](https://github.com/shinybrar/releaseer/compare/v0.4.4...v0.4.5) (2024-09-17)
+
+
+### Bug Fixes
+
+* **gha:** removed comments ([1e2c067](https://github.com/shinybrar/releaseer/commit/1e2c06779558e0878c1a180600555e61a26bda86))
+* **github-actions:** working with deployments ([917dd03](https://github.com/shinybrar/releaseer/commit/917dd0309dedc96dc0a712220040e2db0d5db00f))
+
 ## [0.4.4](https://github.com/shinybrar/releaseer/compare/v0.4.3...v0.4.4) (2024-09-17)
 
 
