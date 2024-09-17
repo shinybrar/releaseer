@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.0](https://github.com/shinybrar/releaseer/compare/v0.3.0...v0.4.0) (2024-09-17)
+
+
+### Miscellaneous Chores
+
+* release 0.4.0 ([df69a11](https://github.com/shinybrar/releaseer/commit/df69a114d0c826bb0b6c6213b3073a90b584bd79))
+
 ## [0.3.0](https://github.com/shinybrar/releaseer/compare/v0.2.4...v0.3.0) (2024-09-17)
 
 
