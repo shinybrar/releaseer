@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.4](https://github.com/shinybrar/releaseer/compare/v0.2.3...v0.2.4) (2024-09-17)
+
+
+### Bug Fixes
+
+* **file-name:** add contributor ([2b1654d](https://github.com/shinybrar/releaseer/commit/2b1654db49bd71dd0e6ed777c398a8b676f3bae8))
+
 ## [0.2.3](https://github.com/shinybrar/releaseer/compare/v0.2.2...v0.2.3) (2024-09-16)
 
 
