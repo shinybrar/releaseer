@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.1](https://github.com/shinybrar/releaseer/compare/v0.4.0...v0.4.1) (2024-09-17)
+
+
+### Bug Fixes
+
+* **github-actions:** changed continous deployment to be triggered by new release creation ([9364812](https://github.com/shinybrar/releaseer/commit/9364812605ac0752287872858999592b75aa92d9))
+
 ## [0.4.0](https://github.com/shinybrar/releaseer/compare/v0.3.0...v0.4.0) (2024-09-17)
 
 
