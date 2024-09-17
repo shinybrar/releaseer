@@ -1,9 +1,9 @@
 name: Continous Deployment
 
 on:
-  push:
-    tags:
-      - '*'
+  release:
+    types:
+      - published
 
 jobs:
   release-build:
