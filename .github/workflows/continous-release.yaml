@@ -31,6 +31,6 @@ jobs:
       -
         name: Trigger Deployment Workflow
         if: ${{ steps.release-please.outputs.release_created }}
-        uses: peter-evans/repository-dispatch@v1
+        uses: peter-evans/repository-dispatch@v3
         with:
           event-type: deploy
