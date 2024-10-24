@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.0](https://github.com/shinybrar/releaseer/compare/v0.4.5...v0.5.0) (2024-10-24)
+
+
+### Features
+
+* **release:** updated release process with attestations write permission ([ee17c3e](https://github.com/shinybrar/releaseer/commit/ee17c3ef8b34e329b003bed8cc94626100e38767))
+
 ## [0.4.5](https://github.com/shinybrar/releaseer/compare/v0.4.4...v0.4.5) (2024-09-17)
 
 
