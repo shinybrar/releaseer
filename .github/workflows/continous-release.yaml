@@ -9,8 +9,6 @@ permissions:
   contents: write
   pull-requests: write
   packages: write
-  attestations: write
-  id-token: write
 
 jobs:
   release-please: # Job to run the Release Please Action
