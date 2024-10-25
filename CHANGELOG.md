@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.2](https://github.com/shinybrar/releaseer/compare/v0.6.1...v0.6.2) (2024-10-25)
+
+
+### Bug Fixes
+
+* **release:** release artifacts are now explicitly mentioned ([03cf900](https://github.com/shinybrar/releaseer/commit/03cf900bd0d92da7ddb0451d29c04fa9502c8163))
+
 ## [0.6.1](https://github.com/shinybrar/releaseer/compare/v0.6.0...v0.6.1) (2024-10-25)
 
 
