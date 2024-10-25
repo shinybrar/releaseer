@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.1](https://github.com/shinybrar/releaseer/compare/v0.6.0...v0.6.1) (2024-10-25)
+
+
+### Bug Fixes
+
+* **release:** simplified release logic without the use of cached artifacts ([bc12732](https://github.com/shinybrar/releaseer/commit/bc127326592b8fa12860e4a38deb5f9b0d9b8909))
+
 ## [0.6.0](https://github.com/shinybrar/releaseer/compare/v0.5.1...v0.6.0) (2024-10-25)
 
 
