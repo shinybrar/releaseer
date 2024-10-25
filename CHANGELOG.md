@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.0](https://github.com/shinybrar/releaseer/compare/v0.5.1...v0.6.0) (2024-10-25)
+
+
+### Features
+
+* **attestations:** added attestations to pypi build ([3c65208](https://github.com/shinybrar/releaseer/commit/3c65208b6fa9155b13e6399cbd97c440f7bc3844))
+
 ## [0.5.1](https://github.com/shinybrar/releaseer/compare/v0.5.0...v0.5.1) (2024-10-25)
 
 
