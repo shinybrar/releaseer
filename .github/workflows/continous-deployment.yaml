@@ -39,6 +39,8 @@ jobs:
         name: Attestations for PYPI Artifacts
         uses: actions/attest-build-provenance@v1.4.3
         with:
-          subject-path: dist/**
+          subject-path: |
+            dist/*.whl
+            dist/*.tar.gz
           subject-name: releaseer
           show-summary: true
