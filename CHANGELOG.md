@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.1](https://github.com/shinybrar/releaseer/compare/v0.5.0...v0.5.1) (2024-10-25)
+
+
+### Bug Fixes
+
+* **release:** updated to use gh-action-pypi-publish@v1.10.3 ([d64c8b3](https://github.com/shinybrar/releaseer/commit/d64c8b34e0f6fc715330f28ec80dee69fd7bbc4e))
+
 ## [0.5.0](https://github.com/shinybrar/releaseer/compare/v0.4.5...v0.5.0) (2024-10-24)
 
 
