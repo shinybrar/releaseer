@@ -54,3 +54,10 @@ jobs:
           packages-dir: dist/
           verbose: true
           print-hash: true
+      -
+        name: Attestations for PYPI Artifacts
+        uses: actions/attest-build-provenance@v1.4.3
+        with:
+          subject-path: dist/**
+          subject-name: releaseer
+          show-summary: true
