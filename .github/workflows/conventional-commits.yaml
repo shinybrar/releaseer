@@ -1,0 +1,60 @@
+name: Check Conventional Commits
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  conventional-commits-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout PR
+        uses: actions/checkout@v4.2.2
+
+      - name: Get list of commits
+        id: commits
+        run: |
+          echo "commits=$(git log --format='%s' origin/main..HEAD)" >> $GITHUB_ENV
+
+      - name: Check commit message conformity
+        id: check_conformity
+        run: |
+          commits_array=(${{ steps.commits.outputs.commits }})
+          total_commits=${#commits_array[@]}
+          conforming_commits=0
+          conventional_regex='^(feat|fix|chore|docs|style|refactor|perf|test)(\(.+\))?!?: .{1,72}$'
+
+          for commit_message in "${commits_array[@]}"
+          do
+            if [[ $commit_message =~ $conventional_regex ]]; then
+              conforming_commits=$((conforming_commits + 1))
+            fi
+          done
+
+          percentage=$((100 * conforming_commits / total_commits))
+
+          echo "Total commits: $total_commits"
+          echo "Conforming commits: $conforming_commits"
+          echo "Percentage: $percentage"
+
+          echo "conformity_percentage=$percentage" >> $GITHUB_ENV
+
+      - name: Add comment to PR
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const github = require('@actions/github');
+            const context = github.context;
+            const percentage = process.env.conformity_percentage;
+            const threshold = 80;
+            const message = percentage >= threshold
+              ? `✅ ${percentage}% of commits conform to the Conventional Commits standard.`
+              : `⚠️ Only ${percentage}% of your commits conform to the Conventional Commits standard. Please ensure at least ${threshold}% conformity.`;
+
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: message
+            });
