@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.7.0](https://github.com/shinybrar/releaseer/compare/v0.6.2...v0.7.0) (2024-11-01)
+
+
+### Features
+
+* **ci:** added codeql ([5a674b5](https://github.com/shinybrar/releaseer/commit/5a674b5d6b47d57eef11ac865c3dbf0abd7167f7))
+* **oss:** added ossf scorecard reporting ([fc8e6cf](https://github.com/shinybrar/releaseer/commit/fc8e6cf6dd0d265a815591c8ae75146a8be4b612))
+
 ## [0.6.2](https://github.com/shinybrar/releaseer/compare/v0.6.1...v0.6.2) (2024-10-25)
 
 
